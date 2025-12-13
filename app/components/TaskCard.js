@@ -1,7 +1,6 @@
 "use client";
 
 import deleteIcon from "../assets/trash2.0.png";
-import editIcon from "../assets/edit.png";
 import Image from "next/image";
 
 export default function TaskCard({ task }) {
@@ -13,7 +12,6 @@ export default function TaskCard({ task }) {
         className="w-6 h-3"
       />
       <div className="flex-1">{task.title}</div>
-      <Image src={editIcon} alt="Edit Task" width={20} height={20} className="cursor-pointer" />
       <Image src={deleteIcon} alt="Delete Task" width={20} height={20} className="cursor-pointer" />
     </div>
   );
