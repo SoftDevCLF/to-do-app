@@ -5,7 +5,7 @@ import TaskList from "../components/TaskList";
 export default function Page() {
   return (
     <main className="space-y-2 text-white">
-      <h1 className="text-black">Tasks</h1>
+      <h1 className="text-black text-center text-5xl">All Tasks</h1>
       <TaskList/>
       </main>
   );
