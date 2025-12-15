@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 
+// TaskForm component allows the user to input a new task
 export default function TaskForm({ onAddTask }) {
   const [title, setTitle] = useState("");
 
@@ -17,21 +18,21 @@ export default function TaskForm({ onAddTask }) {
   console.log("Your new task:", task, "has been added to the To-Do list!");
 
   return (
-    <div className="max-w-md mx-auto">
-      <form onSubmit={handleSubmit} className="flex items-center p-3 mb-3 border rounded-lg shadow-md bg-blue-200 text-black">
-        <label htmlFor="taskTitle" className="text-black text-xl font-bold mr-2">
+    <div className="px-10 ml-0 space-y-6">
+      <form onSubmit={handleSubmit} className="flex items-center gap-4 p-8 mb-8 rounded-2xl bg-[#01013D] border border-[#F15A2B] shadow-lg">
+        <label htmlFor="taskTitle" className="text-[#F1FAF5] font-semibold whitespace-nowrap text-2xl">
           Title:
         </label>
-
         <input
           id="taskTitle"
           type="text"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          className="border p-1 rounded"
+          placeholder="Add a new task..."
+          className="flex-1 px-4 py-2 rounded-lg bg-[#000024] text-[#F1FAF5] border border-[#92dad7]/40 placeholder:text-[#92dad7]/60 focus:outline-none focus:ring-2 focus:ring-[#92dad7]"
         />
 
-        <button type="submit" className="bg-blue-500 text-sm rounded border-2 text-white py-1 px-5 ml-25 font-bold  cursor-pointer hover:bg-blue-600">
+        <button type="submit" className="px-5 py-2 rounded-lg font-semibold text-[#F1FAF5] bg-[#F15A2B] hover:bg-orange-600 transition-all shadow-md">
           Add
         </button>
       </form>
