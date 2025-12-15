@@ -1,11 +1,26 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useAuth } from "../contexts/AuthContext";
 import Footer from "../components/footer";
 import NavigationBar from "../components/nav-bar";
 import SideNavBar from "@/app/components/side-nav-bar";
+
 export default function TaskListPage() {
+  const { user } = useAuth();
+  const router = useRouter();
+
   const [filteredItems, setFilteredItems] = useState("all");
+
+  useEffect(() => {
+    if (!user) {
+      router.push("/tasks-list/login");
+    }
+  }, [user, router]);
+
+  if (!user) return null;
+
   return (
     <div className="flex flex-col h-screen bg-[#000024] font-sans">
       <NavigationBar
