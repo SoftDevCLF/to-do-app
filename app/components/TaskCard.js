@@ -15,13 +15,13 @@ export default function TaskCard({ task, onToggleComplete, onDeleteTask }) {
       <div className="flex gap-4 items-center flex-1">
         <div className="flex-1 text-base font-semibold leading-snug px-3">{task.title}</div>
         {/* Edit Button */}
-        <button type="button" className="px-4 py-2 rounded-full font-semibold text-[#F1FAF5] bg-[#F15A2B] hover:bg-orange-600 hover:scale-105 transition-all shadow-md"
+        <button type="button" className="px-4 py-2 rounded-lg font-semibold text-[#F1FAF5] bg-[#F15A2B] hover:bg-orange-600 hover:scale-105 transition-all shadow-md"
           // onClick={() => onEditTask(task.id)} // Uncomment and implement onEditTask when edit functionality is added
         >
           Edit
         </button>
         {/* Delete Button */}
-        <button type="button" className="px-4 py-2 rounded-full font-semibold text-[#F1FAF5] bg-[#F15A2B] hover:bg-red-600 hover:scale-105 transition-all shadow-md"
+        <button type="button" className="px-4 py-2 rounded-lg font-semibold text-[#F1FAF5] bg-[#F15A2B] hover:bg-red-600 hover:scale-105 transition-all shadow-md"
           onClick={() => onDeleteTask(task.id)}
         >
           Delete
