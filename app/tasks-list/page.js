@@ -42,7 +42,7 @@ export default function TaskListPage() {
           <div className="w-full flex items-center justify-between gap-4 px-10 mb-4">
             <SearchBar value={searchTerm} onChange={setSearchTerm} />
             {/* Add task button and modal */}
-              <button onClick={() => setShowModal(true)} className="mr-30 px-3 py-3 rounded-lg font-semibold text-[#F1FAF5] bg-[#F15A2B] hover:bg-orange-600 transition-all shadow-md">
+              <button onClick={() => setShowModal(true)} className="mr-4 px-3 py-3 rounded-lg font-semibold text-[#F1FAF5] bg-[#F15A2B] hover:bg-orange-600 transition-all shadow-md">
               Add New Task
               </button>
           </div>
