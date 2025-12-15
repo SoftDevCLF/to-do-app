@@ -6,16 +6,26 @@ import { useState } from "react";
 export default function TaskForm({ onAddTask }) {
   const [title, setTitle] = useState("");
 
+  //Prevent empty task titles
+  if (title.trim() === "") {
+    return null;
+  }
+  // Handle form submission
   function handleSubmit(event) {
     event.preventDefault();
-    setTitle("");
-  }
 
-  const id = crypto.randomUUID();
+  const newTask = 
+  {  
+    // Generate a unique ID for the new task
+    id: crypto.randomUUID(), 
+    title: title,
+    completed: false,
+  };
 
-  const task = { id: crypto.randomUUID(), title };
+  onAddTask(newTask); //Will be replaced with event handler function that will add task to firestore
+  setTitle(""); //clear form input after submission
+}
 
-  console.log("Your new task:", task, "has been added to the To-Do list!");
 
   return (
     <div className="px-10 ml-0 space-y-6">
