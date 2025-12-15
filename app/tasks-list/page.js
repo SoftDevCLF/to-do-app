@@ -4,6 +4,10 @@ import { useState } from "react";
 import Footer from "../components/footer";
 import NavigationBar from "../components/nav-bar";
 import SideNavBar from "@/app/components/side-nav-bar";
+import TaskForm from "../components/TaskForm";
+import TaskList from "../components/TaskList";
+
+
 export default function TaskListPage() {
   const [filteredItems, setFilteredItems] = useState("all");
   return (
@@ -22,6 +26,9 @@ export default function TaskListPage() {
               Task List
             </h1>
           </section>
+          <TaskForm />
+          <TaskList/>
+
         </main>
       </div>
       <Footer />
