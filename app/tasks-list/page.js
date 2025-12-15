@@ -27,7 +27,7 @@ export default function TaskListPage() {
             </h1>
           </section>
           <TaskForm />
-          <TaskList/>
+          <TaskList filter={filteredItems}/>
 
         </main>
       </div>
