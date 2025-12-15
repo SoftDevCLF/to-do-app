@@ -1,7 +1,22 @@
+"use client";
+
 import Image from "next/image";
 import NavigationBar from "@/app/components/nav-bar";
 import Footer from "@/app/components/footer";
+import { useEffect } from "react";
+import { useAuth } from "@/app/contexts/AuthContext";
+import { useRouter } from "next/navigation";
+
 export default function LoginPage() {
+  const { loginWithGithub, loginWithFacebook, loginWithGoogle, user } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (user) {
+      router.push("/tasks-list");
+    }
+  }, [user, router]);
+
   return (
     <div className="flex flex-col h-screen bg-[#000024] font-sans">
       <NavigationBar displayLogin={false} displayAbout={false} />
@@ -29,7 +44,7 @@ export default function LoginPage() {
                 className="rounded-lg"
               />
               <div className="overflow-hidden max-h-0 opacity-0 group-hover:max-h-24 group-hover:opacity-100 transition-all duration-300">
-                <button className="mt-4 bg-white hover:bg-[#F1FAF5] text-black font-bold py-2 px-4 m-5 rounded-md cursor-pointer">
+                <button onClick={loginWithGithub} className="mt-4 bg-white hover:bg-[#F1FAF5] text-black font-bold py-2 px-4 m-5 rounded-md cursor-pointer">
                   Continue with GitHub
                 </button>
               </div>
@@ -43,7 +58,7 @@ export default function LoginPage() {
                 className="rounded-lg"
               />
               <div className="overflow-hidden max-h-0 opacity-0 group-hover:max-h-24 group-hover:opacity-100 transition-all duration-300">
-                <button className="mt-4 bg-[#1877F2] hover:bg-[#3b5998] text-white font-bold py-2 px-4 m-5 rounded-md cursor-pointer">
+                <button onClick={loginWithFacebook} className="mt-4 bg-[#1877F2] hover:bg-[#3b5998] text-white font-bold py-2 px-4 m-5 rounded-md cursor-pointer">
                   Continue with Facebook
                 </button>
               </div>
@@ -57,7 +72,7 @@ export default function LoginPage() {
                 className="rounded-lg"
               />
               <div className="overflow-hidden max-h-0 opacity-0 group-hover:max-h-24 group-hover:opacity-100 transition-all duration-300">
-                <button className="mt-4 bg-[#EA4335] hover:bg-[#DB4437] text-white font-bold py-2 px-4 m-5 rounded-md cursor-pointer">
+                <button onClick={loginWithGoogle} className="mt-4 bg-[#EA4335] hover:bg-[#DB4437] text-white font-bold py-2 px-4 m-5 rounded-md cursor-pointer">
                   Continue with Google
                 </button>
               </div>
