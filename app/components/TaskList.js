@@ -1,6 +1,6 @@
 "use client";
 import TaskCard from "./TaskCard";
-import tasks from "../testingpage/tasks.json";
+import tasks from "../data/tasks.json";
 
 export default function TaskList() {
   console.log("Loaded tasks:", tasks); // debug check
