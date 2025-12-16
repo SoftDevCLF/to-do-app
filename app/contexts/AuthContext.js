@@ -22,7 +22,10 @@ export function AuthProvider({ children }) {
             const provider = new GithubAuthProvider();
             await signInWithPopup(auth, provider);
         } catch (error) {
-            if (error.code !== "auth/cancelled-popup-request") {
+            if (
+                error.code !== "auth/cancelled-popup-request" &&
+                error.code !== "auth/popup-closed-by-user"
+            ) {
                 console.error(error);
             }
         }
@@ -35,7 +38,10 @@ export function AuthProvider({ children }) {
 
             await signInWithPopup(auth, provider);
         } catch (error) {
-            if (error.code !== "auth/cancelled-popup-request") {
+            if (
+                error.code !== "auth/cancelled-popup-request" &&
+                error.code !== "auth/popup-closed-by-user"
+            ) {
                 console.error(error);
             }
         }
@@ -46,7 +52,10 @@ export function AuthProvider({ children }) {
             const provider = new GoogleAuthProvider();
             await signInWithPopup(auth, provider);
         } catch (error) {
-            if (error.code !== "auth/cancelled-popup-request") {
+            if (
+                error.code !== "auth/cancelled-popup-request" &&
+                error.code !== "auth/popup-closed-by-user"
+            ) {
                 console.error(error);
             }
         }
