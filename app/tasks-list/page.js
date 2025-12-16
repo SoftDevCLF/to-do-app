@@ -4,24 +4,40 @@ import { useState } from "react";
 import Footer from "../components/footer";
 import NavigationBar from "../components/nav-bar";
 import SideNavBar from "@/app/components/side-nav-bar";
-import TaskForm from "../components/TaskFormModal";
+import TaskForm from "../components/Modals/TaskFormModal";
 import TaskList from "../components/TaskList";
 import SearchBar from "../components/SearchBar";
+import ConfirmDeleteModal from "../components/Modals/ConfirmDeleteModal";
+import testTasks from "../data/tasks.json";
 //import { getTasks } from "./_services/taskService";
 
 
 export default function TaskListPage() {
-  const [filteredItems, setFilteredItems] = useState("all");
 
+  //States for filtering, searching, tasks, and modals
+  const [filteredItems, setFilteredItems] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(testTasks);
   const [showModal, setShowModal] = useState(false);
-  
+  const [taskToDelete, setTaskToDelete] = useState(null);
+
   //Handle adding a new task
   const handleAddTask = (newTask) => {
   setTasks((prev) => [...prev, newTask]);
-  setShowModal(false);                    //Close modal after adding
-};
+  setShowModal(false);                    
+  };
+
+  //Hande request delete to open modal
+  const handleRequestDelete = (task) => {
+    setTaskToDelete(task);
+  };
+
+  //Handle confirm delete
+  const handleConfirmDelete = (taskId) => {
+    setTasks((prev) => prev.filter((task) => task.id !== taskId));
+    setTaskToDelete(null);
+  }
+
 
   return (
     <div className="flex flex-col h-screen bg-[#000024] font-sans">
@@ -52,7 +68,14 @@ export default function TaskListPage() {
               onClose={() => setShowModal(false)}
             />
           )}
-          <TaskList filter={filteredItems} searchTerm={searchTerm} />
+          <TaskList tasks={tasks} filter={filteredItems} searchTerm={searchTerm} onRequestDelete={handleRequestDelete} />
+          {taskToDelete && (
+            <ConfirmDeleteModal
+              task={taskToDelete} 
+              onConfirm={handleConfirmDelete}
+              onCancel={() => setTaskToDelete(null)}
+            />
+          )}
         </main>
       </div>
       <Footer />
