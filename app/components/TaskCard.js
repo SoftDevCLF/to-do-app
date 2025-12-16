@@ -6,9 +6,7 @@ export default function TaskCard({ task, onToggleComplete, onRequestDelete, onRe
   return (
     <div
       className={`flex items-center justify-between w-full p-8 mb-4 rounded-2xl shadow-lg transition-all ${
-        task.completed ? "bg-[#010122] border border-[#ffffff]" : "bg-[#01013D] border border-[#F15A2B]"
-      }`}
-    >
+        task.completed ? "bg-[#020617] border border-[#1F2937] opacity-60" : "bg-gradient-to-r from-[#020024] to-[#05004A] border border-[#F15A2B]"}`}    >
       <div className="flex items-center gap-4 py-6">
       {/* Checkbox */}
       <input
