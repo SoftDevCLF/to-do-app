@@ -3,7 +3,7 @@ import TaskCard from "./TaskCard";
 import { useState } from "react";
 
 //TaskList component displays a list of tasks
-export default function TaskList({tasks, filter, searchTerm, onToggleComplete, onRequestDelete}) {
+export default function TaskList({tasks, filter, searchTerm, onToggleComplete, onRequestDelete, onRequestEdit}) {
 
  //Make tasks reactive
   const [tasksList, setTaskList] = useState(tasks);
@@ -28,7 +28,9 @@ export default function TaskList({tasks, filter, searchTerm, onToggleComplete, o
         key={task.id}
         task={task} 
         onToggleComplete={onToggleComplete} 
-        onRequestDelete={onRequestDelete} />
+        onRequestDelete={onRequestDelete}
+        onRequestEdit={onRequestEdit}
+        />
       ))}
     </div>
   );
