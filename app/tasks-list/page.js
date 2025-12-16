@@ -1,6 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useAuth } from "../contexts/AuthContext";
 import Footer from "../components/footer";
 import NavigationBar from "../components/nav-bar";
 import SideNavBar from "@/app/components/side-nav-bar";
@@ -16,6 +18,9 @@ import Confetti from "react-confetti";
 
 export default function TaskListPage() {
 
+  const { user } = useAuth();
+  const router = useRouter();
+
   //States for filtering, searching, tasks, and modals
   const [filteredItems, setFilteredItems] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
@@ -25,9 +30,16 @@ export default function TaskListPage() {
   const [taskToEdit, setTaskToEdit] = useState(null);
   const [showConfetti, setShowConfetti] = useState(false);
   
+  useEffect(() => {
+    if (!user) {
+      router.push("/tasks-list/login");
+    }
+  }, [user, router]);
+
+  if (!user) return null;
+  
 
   //CRUD FUNCTIONS TO BE IMPLEMENTED WITH BACKEND API/DATABASE SERVICES CALLS 
-
   //Handle adding a new task
   const handleAddTask = (newTask) => {
   setTasks((prev) => [...prev, newTask]);
@@ -72,8 +84,6 @@ export default function TaskListPage() {
     );
     setTaskToEdit(null);
   };
-
-
 
   return (
     <div className="flex flex-col h-screen bg-[#000024] font-sans">
