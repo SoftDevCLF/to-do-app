@@ -10,6 +10,7 @@ import SearchBar from "../components/SearchBar";
 import ConfirmDeleteModal from "../components/Modals/ConfirmDeleteModal";
 import EditTaskModal from "../components/Modals/EditTaskModal";
 import testTasks from "../data/tasks.json";
+import Confetti from "react-confetti";
 //import { getTasks } from "./_services/taskService";
 
 
@@ -22,13 +23,31 @@ export default function TaskListPage() {
   const [showModal, setShowModal] = useState(false);
   const [taskToDelete, setTaskToDelete] = useState(null);
   const [taskToEdit, setTaskToEdit] = useState(null);
+  const [showConfetti, setShowConfetti] = useState(false);
   
+
+  //CRUD FUNCTIONS TO BE IMPLEMENTED WITH BACKEND API/DATABASE SERVICES CALLS 
 
   //Handle adding a new task
   const handleAddTask = (newTask) => {
   setTasks((prev) => [...prev, newTask]);
   setShowModal(false);                    
   };
+
+  //Handle toggling task completion
+  const handleToggleComplete = (task) => {
+  // Toggle task completion
+  setTasks(prev =>
+    prev.map(t =>
+      t.id === task.id ? { ...t, completed: !t.completed } : t
+    )
+  );
+  //Trigger confetti when task is being completed
+  if (!task.completed) {
+    setShowConfetti(true);
+    setTimeout(() => setShowConfetti(false), 2000); // confetti lasts 2s
+  }
+};
 
   //Hande request delete to open modal
   const handleRequestDelete = (task) => {
@@ -67,6 +86,11 @@ export default function TaskListPage() {
         <SideNavBar onClick={setFilteredItems} />
 
         <main className="flex max-w-screen w-full flex-col items-center bg-[#000024] sm:items-start">
+          {/*Render confetti on task completion */}
+          {showConfetti && <Confetti 
+            numberOfPieces={1000}
+            recycle={false}
+            colors={["#F15A2B","#F1FAF5","#01013D"]} />}
           <section className="w-full text-center sm:text-left gap-5">
             <h1 className="text-5xl font-bold mb-6 text-[#F1FAF5] py-12 ps-10">
               Task List
@@ -85,7 +109,14 @@ export default function TaskListPage() {
               onClose={() => setShowModal(false)}
             />
           )}
-          <TaskList tasks={tasks} filter={filteredItems} searchTerm={searchTerm} onRequestDelete={handleRequestDelete} onRequestEdit={handleRequestEdit} />
+          <TaskList 
+            tasks={tasks} 
+            filter={filteredItems} 
+            searchTerm={searchTerm} 
+            onRequestDelete={handleRequestDelete} 
+            onRequestEdit={handleRequestEdit}
+            onToggleComplete={handleToggleComplete} 
+            />
           {taskToDelete && (
             <ConfirmDeleteModal
               task={taskToDelete} 
