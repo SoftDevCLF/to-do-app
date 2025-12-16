@@ -4,9 +4,9 @@ import { useState } from "react";
 
 // TaskForm component allows the user to input a new task
 export default function TaskFormModal({ onAddTask, onClose }) {
+
   const [title, setTitle] = useState("");
-  
-  
+
   // Handle form submission
   function handleSubmit(event) {
     event.preventDefault();
@@ -18,14 +18,12 @@ export default function TaskFormModal({ onAddTask, onClose }) {
     title: title,
     completed: false,
   };
-
   onAddTask(newTask); //Will be replaced with event handler function that will add task to firestore
   setTitle(""); //clear form input after submission
 }
 
-
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50"
+    <div className="fixed inset-0 flex items-center justify-center bg-black/60 bg-opacity-50 z-50"
       onClick={onClose} //Modal clicked outside closes
     >
       <div className="bg-[#01013D] p-8 rounded-2xl shadow-xl w-full max-w-md"
