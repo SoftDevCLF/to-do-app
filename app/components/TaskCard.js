@@ -13,7 +13,7 @@ export default function TaskCard({ task, onToggleComplete, onRequestDelete, onRe
       {/* Checkbox */}
       <input
         type="checkbox"
-        checked={task.completed || false}
+        checked={task.completed}
         className="w-6 h-6 cursor-pointer rounded border-2 border-[#F15A2B] bg-[#01013D] checked:bg-[#F15A2B] accent-[#F15A2B] transition"
         onChange={() => onToggleComplete(task)}
         aria-label={`Mark task "${task.title}" as ${task.completed ? "incomplete" : "complete"}`}
