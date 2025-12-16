@@ -1,7 +1,8 @@
 "use client";
 
 // TaskCard component displays a single task item
-export default function TaskCard({ task, onToggleComplete, onDeleteTask }) {
+export default function TaskCard({ task, onToggleComplete, onRequestDelete }) {
+  
   return (
     <div className="flex items-center justify-between w-full p-8 mb-4 border border-[#F15A2B] rounded-2xl bg-[#01013D] text-white shadow-lg hover:shadow-xl hover:scale-105 transition-all ">
       <div className="flex items-center gap-4 py-6">
@@ -22,7 +23,7 @@ export default function TaskCard({ task, onToggleComplete, onDeleteTask }) {
         </button>
         {/* Delete Button */}
         <button type="button" className="px-4 py-2 rounded-lg font-semibold text-[#F1FAF5] bg-[#F15A2B] hover:bg-red-600 hover:scale-105 transition-all shadow-md"
-          onClick={() => onDeleteTask(task.id)}
+          onClick={() => onRequestDelete(task)}
         >
           Delete
         </button>
