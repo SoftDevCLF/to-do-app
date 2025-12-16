@@ -8,6 +8,7 @@ import TaskForm from "../components/Modals/TaskFormModal";
 import TaskList from "../components/TaskList";
 import SearchBar from "../components/SearchBar";
 import ConfirmDeleteModal from "../components/Modals/ConfirmDeleteModal";
+import EditTaskModal from "../components/Modals/EditTaskModal";
 import testTasks from "../data/tasks.json";
 //import { getTasks } from "./_services/taskService";
 
@@ -20,6 +21,8 @@ export default function TaskListPage() {
   const [tasks, setTasks] = useState(testTasks);
   const [showModal, setShowModal] = useState(false);
   const [taskToDelete, setTaskToDelete] = useState(null);
+  const [taskToEdit, setTaskToEdit] = useState(null);
+  
 
   //Handle adding a new task
   const handleAddTask = (newTask) => {
@@ -37,6 +40,20 @@ export default function TaskListPage() {
     setTasks((prev) => prev.filter((task) => task.id !== taskId));
     setTaskToDelete(null);
   }
+
+  //Handle edit task
+  const handleRequestEdit = (task) => {
+    setTaskToEdit(task);
+  };
+
+  //Handle update task 
+  const handleUpdateTask = (updatedTask) => {
+    setTasks((prev) =>
+      prev.map((task) => (task.id === updatedTask.id ? updatedTask : task))
+    );
+    setTaskToEdit(null);
+  };
+
 
 
   return (
@@ -68,12 +85,19 @@ export default function TaskListPage() {
               onClose={() => setShowModal(false)}
             />
           )}
-          <TaskList tasks={tasks} filter={filteredItems} searchTerm={searchTerm} onRequestDelete={handleRequestDelete} />
+          <TaskList tasks={tasks} filter={filteredItems} searchTerm={searchTerm} onRequestDelete={handleRequestDelete} onRequestEdit={handleRequestEdit} />
           {taskToDelete && (
             <ConfirmDeleteModal
               task={taskToDelete} 
               onConfirm={handleConfirmDelete}
               onCancel={() => setTaskToDelete(null)}
+            />
+          )}
+          {taskToEdit && (
+            <EditTaskModal
+              task={taskToEdit}
+              onUpdate={handleUpdateTask}
+              onCancel={() => setTaskToEdit(null)}
             />
           )}
         </main>
