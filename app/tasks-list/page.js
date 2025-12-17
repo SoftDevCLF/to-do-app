@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "../contexts/AuthContext";
-import Footer from "../components/Footer";
+import Footer from "@/app/components/Footer";
 import NavigationBar from "../components/NavBar";
 import SideNavBar from "@/app/components/SideNavBar";
 import TaskForm from "../components/Modals/TaskFormModal";
