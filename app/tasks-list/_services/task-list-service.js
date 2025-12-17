@@ -35,7 +35,19 @@ export async function addTask(userId, task) {
 }
 
 // Toggle completion
+export async function toggleTask(userId, taskId, completed) {
+    const ref = doc(db, "users", userId, "tasks", taskId);
+    await updateDoc(ref, { completed })
+}
+
+// Delete task
 export async function deleteTask(userId, taskId) {
     const ref = doc(db, "users", userId, "tasks", taskId);
     await deleteDoc(ref);
+}
+
+// Update task
+export async function updateTaskTitle(userId, taskId, title) {
+    const ref = doc(db, "users", userId, "tasks", taskId);
+    await updateDoc(ref, { title })
 }
