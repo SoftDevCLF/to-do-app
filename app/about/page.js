@@ -1,8 +1,8 @@
 "use client";
 
-import NavigationBar from "../components/nav-bar";
+import NavigationBar from "../components/NavBar";
 import Image from "next/image";
-import Footer from "../components/footer";
+import Footer from "../components/Footer";
 
 export default function AboutPage() {
   return (
@@ -13,10 +13,8 @@ export default function AboutPage() {
         displayLogout={false}
       />
 
-      
-      <main className="flex-1 px-16 py-20"> 
+      <main className="flex-1 px-16 py-20">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
-
           <div className="relative w-full h-[520px] rounded-3xl overflow-hidden shadow-2xl">
             <Image
               src="/about1.jpg"
@@ -29,7 +27,6 @@ export default function AboutPage() {
           </div>
 
           <div className="pt-2">
-
             <h1 className="text-6xl font-bold leading-tight mb-8">
               Built to keep you focused.
               <br />
@@ -68,8 +65,8 @@ export default function AboutPage() {
             </div>
 
             <div className="mt-8 p-5 rounded-2xl bg-[#01013D] border border-[#F15A2B]/30 text-sm italic text-[#92dad7] shadow-lg">
-              This app was built with productivity in mind…
-              but we can’t guarantee it will stop you from adding
+              This app was built with productivity in mind… but we can’t
+              guarantee it will stop you from adding
               <strong> “Fix one last bug”</strong> or
               <strong> “Submit assignment at 11:59 PM”</strong>.
               <span className="block mt-3 text-right text-[#F1FAF5]/70">
