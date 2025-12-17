@@ -93,7 +93,7 @@ export default function TaskListPage() {
     await updateTaskTitle(
       user.uid,
       updatedTask.id,
-      updateTask.title
+      updatedTask.title
     );
     await loadTasks();
     setTaskToEdit(null);
