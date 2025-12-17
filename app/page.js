@@ -1,6 +1,6 @@
 "use client";
 import NavigationBar from "./components/NavBar";
-import Footer from "../components/Footer";
+import Footer from "@/app/components/Footer";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
