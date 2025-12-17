@@ -3,9 +3,9 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "../contexts/AuthContext";
-import Footer from "../components/footer";
-import NavigationBar from "../components/nav-bar";
-import SideNavBar from "@/app/components/side-nav-bar";
+import Footer from "../components/Footer";
+import NavigationBar from "../components/NavBar";
+import SideNavBar from "@/app/components/SideNavBar";
 import TaskForm from "../components/Modals/TaskFormModal";
 import TaskList from "../components/TaskList";
 import SearchBar from "../components/SearchBar";
@@ -18,9 +18,8 @@ import {
   addTask,
   toggleTask,
   deleteTask,
-  updateTaskTitle
+  updateTaskTitle,
 } from "./_services/task-list-service";
-
 
 export default function TaskListPage() {
   const { user } = useAuth();
@@ -39,7 +38,7 @@ export default function TaskListPage() {
     if (!user) {
       router.push("/tasks-list/login");
     } else {
-      loadTasks(); 
+      loadTasks();
     }
   }, [user, router]);
 
@@ -54,7 +53,6 @@ export default function TaskListPage() {
       alert("Unable to load tasks. Please try again.");
     }
   }
-  
 
   //CRUD FUNCTIONS TO BE IMPLEMENTED WITH BACKEND API/DATABASE SERVICES CALLS
   //Handle adding a new task
@@ -62,11 +60,11 @@ export default function TaskListPage() {
     try {
       await addTask(user.uid, newTask);
       await loadTasks();
-      setShowModal(false); 
+      setShowModal(false);
     } catch (error) {
       console.error("Failed to add task");
       alert("Failed to add task. Please try again.");
-    }               
+    }
   };
 
   //Handle toggling task completion
@@ -109,14 +107,10 @@ export default function TaskListPage() {
     setTaskToEdit(task);
   };
 
-  //Handle update task 
+  //Handle update task
   const handleUpdateTask = async (updatedTask) => {
     try {
-      await updateTaskTitle(
-        user.uid,
-        updatedTask.id,
-        updatedTask.title
-      );
+      await updateTaskTitle(user.uid, updatedTask.id, updatedTask.title);
       await loadTasks();
       setTaskToEdit(null);
     } catch (error) {
@@ -145,19 +139,19 @@ export default function TaskListPage() {
             />
           )}
           <section className="w-full text-center sm:text-left gap-5">
-            <h1 className="text-5xl font-bold mb-6 text-[#F1FAF5] py-12 ps-22">
+            <h1 className="text-5xl font-bold text-[#F1FAF5] pt-12 pb-10 ps-22">
               Task List
             </h1>
           </section>
           <div className="w-full flex items-center justify-between gap-4 px-22 mb-4">
-            <SearchBar value={searchTerm} onChange={setSearchTerm} />
-            {/* Add task button and modal */}
             <button
               onClick={() => setShowModal(true)}
-              className="px-3 py-3 rounded-lg font-semibold text-[#F1FAF5] bg-[#F15A2B] hover:bg-orange-600 transition-all shadow-md"
+              className="px-3 py-3 rounded-lg font-semibold text-[#F1FAF5] bg-purple-800 hover:bg-purple-900 transition-all shadow-md"
             >
               Add New Task
             </button>
+            <SearchBar value={searchTerm} onChange={setSearchTerm} />
+            {/* Add task button and modal */}
           </div>
           {showModal && (
             <TaskForm
