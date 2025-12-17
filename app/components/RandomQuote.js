@@ -28,7 +28,7 @@ export default function RandomQuote() {
       <p className="text-right mt-2 font-semibold">— {quote.author}</p>
       <button
         onClick={handleNewQuote}
-        className="mt-2 px-4 py-2 bg-[#F15A2B] rounded-lg hover:bg-orange-600 transition"
+        className="mt-2 px-4 py-2 bg-purple-800 rounded-lg hover:bg-purple-900 transition"
       >
         New Quote
       </button>

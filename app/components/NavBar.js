@@ -38,7 +38,7 @@ export default function NavigationBar({
           {displayLogin && (
             <li>
               <button
-                className="px-6 py-2 bg-[#F15A2B] text-white rounded-lg hover:bg-[#D14A1F]"
+                className="px-6 py-2 bg-purple-800 text-white rounded-lg hover:bg-purple-900 font-bold transition"
                 onClick={loginPageNav}
               >
                 Login
@@ -49,7 +49,7 @@ export default function NavigationBar({
             <li>
               <button
                 onClick={handleLogout}
-                className="px-6 py-2 bg-[#F15A2B] text-white rounded-lg hover:bg-[#D14A1F]"
+                className="px-6 py-2 bg-purple-800 text-white rounded-lg hover:bg-purple-900 transition font-bold"
               >
                 Logout
               </button>

@@ -42,7 +42,7 @@ export default function TaskCard({
         >
           <button
             type="button"
-            className="px-4 py-2 rounded-lg font-semibold text-[#F1FAF5] bg-[#F15A2B] hover:bg-orange-600 hover:scale-105 transition-all shadow-md"
+            className="px-4 py-2 rounded-lg font-semibold text-[#f1faf5] bg-[#e2b900] hover:bg-yellow-600 hover:scale-105 transition-all shadow-md"
             onClick={() => onRequestEdit(task)}
           >
             Edit
@@ -52,7 +52,7 @@ export default function TaskCard({
         {/* Delete Button */}
         <button
           type="button"
-          className="px-4 py-2 rounded-lg font-semibold text-[#F1FAF5] bg-[#F15A2B] hover:bg-red-600 hover:scale-105 transition-all shadow-md"
+          className="px-4 py-2 rounded-lg font-semibold text-[#f1faf5] bg-[#fa0202] hover:bg-red-900 hover:scale-105 transition-all shadow-md"
           onClick={() => onRequestDelete(task)}
         >
           Delete

@@ -1,6 +1,6 @@
 "use client";
-import NavigationBar from "./components/nav-bar";
-import Footer from "./components/footer";
+import NavigationBar from "./components/NavBar";
+import Footer from "./components/Footer";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
@@ -24,7 +24,7 @@ export default function Home() {
               our intuitive To Do WebApp: Listo.
             </p>
             <button
-              className="px-6 py-3 bg-[#F15A2B] text-white rounded-lg hover:bg-[#D14A1F]"
+              className="px-6 py-3 bg-purple-800 text-white rounded-lg hover:bg-purple-900"
               onClick={loginPageNav}
             >
               Get Started
