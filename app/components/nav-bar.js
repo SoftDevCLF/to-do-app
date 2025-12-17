@@ -57,7 +57,7 @@ export default function NavigationBar({
           )}
           {displayAbout && (
             <li className="py-2">
-              <Link href="#" className="hover:opacity-80 transition">
+              <Link href="/about" className="hover:opacity-80 transition">
                 About
               </Link>
             </li>
