@@ -19,7 +19,7 @@ export default function NavigationBar({
 
   const handleLogout = async () => {
     await logout();
-    router.push("/tasks-list/login");
+    router.replace("/");
   };
 
   return (

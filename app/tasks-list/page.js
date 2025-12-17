@@ -30,9 +30,10 @@ export default function TaskListPage() {
   const [taskToEdit, setTaskToEdit] = useState(null);
   const [showConfetti, setShowConfetti] = useState(false);
   
+  //Redirect to home if not authenticated
   useEffect(() => {
     if (!user) {
-      router.push("/tasks-list/login");
+      router.replace("/");
     }
   }, [user, router]);
 
