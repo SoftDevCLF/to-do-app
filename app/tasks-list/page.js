@@ -16,7 +16,8 @@ import {
   getTasks,
   addTask,
   toggleTask,
-  deleteTask
+  deleteTask,
+  updateTaskTitle
 } from "./_services/task-list-service";
 
 
@@ -89,10 +90,13 @@ export default function TaskListPage() {
   };
 
   //Handle update task 
-  const handleUpdateTask = (updatedTask) => {
-    setTasks((prev) =>
-      prev.map((task) => (task.id === updatedTask.id ? updatedTask : task))
+  const handleUpdateTask = async (updatedTask) => {
+    await updateTaskTitle(
+      user.uid,
+      updatedTask.id,
+      updateTask.title
     );
+    await loadTasks();
     setTaskToEdit(null);
   };
 
