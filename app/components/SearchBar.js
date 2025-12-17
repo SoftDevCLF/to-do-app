@@ -9,7 +9,7 @@ export default function SearchBar({ value, onChange }) {
         onChange={(e) => onChange(e.target.value)}
         placeholder="Search tasks..."
         className="flex-1 px-4 py-3 rounded-xl bg-[#000024] text-[#F1FAF5]
-          border border-[#F15A2B] placeholder:text-white/50
+          border border-purple-600 placeholder:text-white/50
           focus:outline-none focus:ring-2 focus:ring-[#92dad7] w-lg"
       />
     </div>
