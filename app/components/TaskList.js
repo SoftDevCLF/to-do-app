@@ -1,6 +1,5 @@
 "use client";
 import TaskCard from "./TaskCard";
-import { useState } from "react";
 
 //TaskList component displays a list of tasks
 export default function TaskList({
@@ -11,11 +10,9 @@ export default function TaskList({
   onRequestDelete,
   onRequestEdit,
 }) {
-  //Make tasks reactive
-  const [tasksList, setTaskList] = useState(tasks);
 
   //Filter tasks
-  const filteredTasks = tasksList
+  const filteredTasks = tasks
     .filter((task) => {
       if (filter === "completed") return task.completed;
       if (filter === "incomplete") return !task.completed;
