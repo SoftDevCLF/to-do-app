@@ -22,7 +22,6 @@ import {
 
 
 export default function TaskListPage() {
-
   const { user } = useAuth();
   const router = useRouter();
 
@@ -34,7 +33,7 @@ export default function TaskListPage() {
   const [taskToDelete, setTaskToDelete] = useState(null);
   const [taskToEdit, setTaskToEdit] = useState(null);
   const [showConfetti, setShowConfetti] = useState(false);
-  
+
   useEffect(() => {
     if (!user) {
       router.push("/tasks-list/login");
@@ -51,7 +50,7 @@ export default function TaskListPage() {
   }
   
 
-  //CRUD FUNCTIONS TO BE IMPLEMENTED WITH BACKEND API/DATABASE SERVICES CALLS 
+  //CRUD FUNCTIONS TO BE IMPLEMENTED WITH BACKEND API/DATABASE SERVICES CALLS
   //Handle adding a new task
   const handleAddTask = async (newTask) => {
     await addTask(user.uid, newTask);
@@ -82,7 +81,7 @@ export default function TaskListPage() {
     await deleteTask(user.uid, taskId);
     await loadTasks();
     setTaskToDelete(null);
-  }
+  };
 
   //Handle edit task
   const handleRequestEdit = (task) => {
@@ -112,21 +111,27 @@ export default function TaskListPage() {
 
         <main className="flex max-w-screen w-full flex-col items-center bg-[#000024] sm:items-start">
           {/*Render confetti on task completion */}
-          {showConfetti && <Confetti 
-            numberOfPieces={1000}
-            recycle={false}
-            colors={["#F15A2B","#F1FAF5","#01013D"]} />}
+          {showConfetti && (
+            <Confetti
+              numberOfPieces={1000}
+              recycle={false}
+              colors={["#F15A2B", "#F1FAF5", "#01013D"]}
+            />
+          )}
           <section className="w-full text-center sm:text-left gap-5">
-            <h1 className="text-5xl font-bold mb-6 text-[#F1FAF5] py-12 ps-10">
+            <h1 className="text-5xl font-bold mb-6 text-[#F1FAF5] py-12 ps-22">
               Task List
             </h1>
           </section>
-          <div className="w-full flex items-center justify-between gap-4 px-10 mb-4">
+          <div className="w-full flex items-center justify-between gap-4 px-22 mb-4">
             <SearchBar value={searchTerm} onChange={setSearchTerm} />
             {/* Add task button and modal */}
-              <button onClick={() => setShowModal(true)} className="mr-4 px-3 py-3 rounded-lg font-semibold text-[#F1FAF5] bg-[#F15A2B] hover:bg-orange-600 transition-all shadow-md">
+            <button
+              onClick={() => setShowModal(true)}
+              className="px-3 py-3 rounded-lg font-semibold text-[#F1FAF5] bg-[#F15A2B] hover:bg-orange-600 transition-all shadow-md"
+            >
               Add New Task
-              </button>
+            </button>
           </div>
           {showModal && (
             <TaskForm
@@ -134,17 +139,17 @@ export default function TaskListPage() {
               onClose={() => setShowModal(false)}
             />
           )}
-          <TaskList 
-            tasks={tasks} 
-            filter={filteredItems} 
-            searchTerm={searchTerm} 
-            onRequestDelete={handleRequestDelete} 
+          <TaskList
+            tasks={tasks}
+            filter={filteredItems}
+            searchTerm={searchTerm}
+            onRequestDelete={handleRequestDelete}
             onRequestEdit={handleRequestEdit}
-            onToggleComplete={handleToggleComplete} 
-            />
+            onToggleComplete={handleToggleComplete}
+          />
           {taskToDelete && (
             <ConfirmDeleteModal
-              task={taskToDelete} 
+              task={taskToDelete}
               onConfirm={handleConfirmDelete}
               onCancel={() => setTaskToDelete(null)}
             />

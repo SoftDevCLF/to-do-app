@@ -10,9 +10,9 @@ export default function Home() {
     router.push("/tasks-list/login");
   };
   return (
-    <div className="flex flex-col h-screen items-center justify-center bg-[#000024] font-sans">
+    <div className="flex flex-col min-h-screen bg-white font-sans">
       <NavigationBar />
-      <main className="flex max-w-screen w-full items-center py-12 bg-[#000024] sm:items-start">
+      <main className="flex-1 max-w-screen w-full items-center py-12 bg-[#000024] sm:items-start">
         <section className="flex w-full text-center sm:text-left gap-5">
           <div className="w-full ps-16">
             <h1 className="text-5xl font-bold mb-6 text-[#F1FAF5]">
