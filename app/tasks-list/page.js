@@ -11,9 +11,13 @@ import TaskList from "../components/TaskList";
 import SearchBar from "../components/SearchBar";
 import ConfirmDeleteModal from "../components/Modals/ConfirmDeleteModal";
 import EditTaskModal from "../components/Modals/EditTaskModal";
-import testTasks from "../data/tasks.json";
 import Confetti from "react-confetti";
-//import { getTasks } from "./_services/taskService";
+import {
+  getTasks,
+  addTask,
+  toggleTask,
+  deleteTask
+} from "./_services/task-list-service";
 
 
 export default function TaskListPage() {
@@ -24,7 +28,7 @@ export default function TaskListPage() {
   //States for filtering, searching, tasks, and modals
   const [filteredItems, setFilteredItems] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
-  const [tasks, setTasks] = useState(testTasks);
+  const [tasks, setTasks] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [taskToDelete, setTaskToDelete] = useState(null);
   const [taskToEdit, setTaskToEdit] = useState(null);
@@ -37,28 +41,32 @@ export default function TaskListPage() {
   }, [user, router]);
 
   if (!user) return null;
+
+  async function loadTasks() {
+    const data = await getTasks(user.uid);
+    setTasks(data);
+  }
   
 
   //CRUD FUNCTIONS TO BE IMPLEMENTED WITH BACKEND API/DATABASE SERVICES CALLS 
   //Handle adding a new task
-  const handleAddTask = (newTask) => {
-  setTasks((prev) => [...prev, newTask]);
-  setShowModal(false);                    
+  const handleAddTask = async (newTask) => {
+    await addTask(user.uid, newTask);
+    await loadTasks();
+    setShowModal(false);                    
   };
 
   //Handle toggling task completion
-  const handleToggleComplete = (task) => {
-  // Toggle task completion
-  setTasks(prev =>
-    prev.map(t =>
-      t.id === task.id ? { ...t, completed: !t.completed } : t
-    )
-  );
+  const handleToggleComplete = async (task) => {
+    // Toggle task completion
+    await toggleTask(user.uid, task.id, !task.completed);
+    await loadTasks();
+
   //Trigger confetti when task is being completed
-  if (!task.completed) {
-    setShowConfetti(true);
-    setTimeout(() => setShowConfetti(false), 2000); // confetti lasts 2s
-  }
+    if (!task.completed) {
+      setShowConfetti(true);
+      setTimeout(() => setShowConfetti(false), 2000); // confetti lasts 2s
+    }
 };
 
   //Hande request delete to open modal
@@ -67,8 +75,9 @@ export default function TaskListPage() {
   };
 
   //Handle confirm delete
-  const handleConfirmDelete = (taskId) => {
-    setTasks((prev) => prev.filter((task) => task.id !== taskId));
+  const handleConfirmDelete = async (taskId) => {
+    await deleteTask(user.uid, taskId);
+    await loadTasks();
     setTaskToDelete(null);
   }
 
