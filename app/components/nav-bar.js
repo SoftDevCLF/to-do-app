@@ -24,7 +24,7 @@ export default function NavigationBar({
 
   return (
     <header className="w-full bg-[#000024] border-b border-[#011D33]">
-      <nav className="flex items-center justify-between py-2 px-16">
+      <nav className="flex items-center justify-between py-2 px-22">
         <Link href="/" className="text-2xl font-bold text-white">
           <Image
             src="/logow.png"
@@ -47,7 +47,10 @@ export default function NavigationBar({
           )}
           {displayLogout && (
             <li>
-              <button onClick={handleLogout} className="px-6 py-2 bg-[#F15A2B] text-white rounded-lg hover:bg-[#D14A1F]">
+              <button
+                onClick={handleLogout}
+                className="px-6 py-2 bg-[#F15A2B] text-white rounded-lg hover:bg-[#D14A1F]"
+              >
                 Logout
               </button>
             </li>
