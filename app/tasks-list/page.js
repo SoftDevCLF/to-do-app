@@ -37,6 +37,8 @@ export default function TaskListPage() {
   useEffect(() => {
     if (!user) {
       router.push("/tasks-list/login");
+    } else {
+      loadTasks(); 
     }
   }, [user, router]);
 
