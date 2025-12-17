@@ -12,6 +12,7 @@ import SearchBar from "../components/SearchBar";
 import ConfirmDeleteModal from "../components/Modals/ConfirmDeleteModal";
 import EditTaskModal from "../components/Modals/EditTaskModal";
 import Confetti from "react-confetti";
+import RandomQuote from "../components/RandomQuote";
 import {
   getTasks,
   addTask,
@@ -109,7 +110,7 @@ export default function TaskListPage() {
       <div className="flex flex-1 w-full">
         <SideNavBar onClick={setFilteredItems} />
 
-        <main className="flex max-w-screen w-full flex-col items-center bg-[#000024] sm:items-start">
+        <main className="flex-1 flex w-full flex-col items-center bg-[#000024] sm:items-start">
           {/*Render confetti on task completion */}
           {showConfetti && (
             <Confetti
@@ -161,6 +162,7 @@ export default function TaskListPage() {
               onCancel={() => setTaskToEdit(null)}
             />
           )}
+          <RandomQuote />
         </main>
       </div>
       <Footer />
