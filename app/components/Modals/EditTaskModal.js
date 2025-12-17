@@ -21,7 +21,7 @@ export default function EditTaskModal({ task, onUpdate, onCancel }) {
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#F15A2B]"
+            className="text-white w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#F15A2B]"
             placeholder="Task Title"
             required
           />
