@@ -27,9 +27,9 @@ export default function TaskCard({
           }`}
         />
       </div>
-      <div className="flex gap-4 items-center flex-1">
+      <div className="flex gap-4 items-center flex-1 min-w-0">
         <div
-          className={`flex-1 text-base font-semibold leading-snug px-3 ${
+          className={`flex-1 text-base font-semibold leading-snug px-3 break-words max-w-full overflow-hidden ${
             task.completed ? "line-through text-gray-400" : "text-[#F1FAF5]"
           }`}
         >
