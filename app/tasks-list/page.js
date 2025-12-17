@@ -46,31 +46,46 @@ export default function TaskListPage() {
   if (!user) return null;
 
   async function loadTasks() {
-    const data = await getTasks(user.uid);
-    setTasks(data);
+    try {
+      const data = await getTasks(user.uid);
+      setTasks(data);
+    } catch (error) {
+      console.error("Failed to load tasks");
+      alert("Unable to load tasks. Please try again.");
+    }
   }
   
 
   //CRUD FUNCTIONS TO BE IMPLEMENTED WITH BACKEND API/DATABASE SERVICES CALLS
   //Handle adding a new task
   const handleAddTask = async (newTask) => {
-    await addTask(user.uid, newTask);
-    await loadTasks();
-    setShowModal(false);                    
+    try {
+      await addTask(user.uid, newTask);
+      await loadTasks();
+      setShowModal(false); 
+    } catch (error) {
+      console.error("Failed to add task");
+      alert("Failed to add task. Please try again.");
+    }               
   };
 
   //Handle toggling task completion
   const handleToggleComplete = async (task) => {
-    // Toggle task completion
-    await toggleTask(user.uid, task.id, !task.completed);
-    await loadTasks();
+    try {
+      // Toggle task completion
+      await toggleTask(user.uid, task.id, !task.completed);
+      await loadTasks();
 
-  //Trigger confetti when task is being completed
-    if (!task.completed) {
-      setShowConfetti(true);
-      setTimeout(() => setShowConfetti(false), 2000); // confetti lasts 2s
+      //Trigger confetti when task is being completed
+      if (!task.completed) {
+        setShowConfetti(true);
+        setTimeout(() => setShowConfetti(false), 2000); // confetti lasts 2s
+      }
+    } catch (error) {
+      console.error("Failed to update task");
+      alert("Could not update task status.");
     }
-};
+  };
 
   //Hande request delete to open modal
   const handleRequestDelete = (task) => {
@@ -79,9 +94,14 @@ export default function TaskListPage() {
 
   //Handle confirm delete
   const handleConfirmDelete = async (taskId) => {
-    await deleteTask(user.uid, taskId);
-    await loadTasks();
-    setTaskToDelete(null);
+    try {
+      await deleteTask(user.uid, taskId);
+      await loadTasks();
+      setTaskToDelete(null);
+    } catch (error) {
+      console.error("Failed to delete task");
+      alert("Failed to delete task.");
+    }
   };
 
   //Handle edit task
@@ -91,13 +111,18 @@ export default function TaskListPage() {
 
   //Handle update task 
   const handleUpdateTask = async (updatedTask) => {
-    await updateTaskTitle(
-      user.uid,
-      updatedTask.id,
-      updatedTask.title
-    );
-    await loadTasks();
-    setTaskToEdit(null);
+    try {
+      await updateTaskTitle(
+        user.uid,
+        updatedTask.id,
+        updatedTask.title
+      );
+      await loadTasks();
+      setTaskToEdit(null);
+    } catch (error) {
+      console.error("Failed to update task");
+      alert("Failed to update task.");
+    }
   };
 
   return (
